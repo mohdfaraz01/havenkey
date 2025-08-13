@@ -1,874 +1,537 @@
-:root {
-  /* Color Tokens */
-  --color-primary: #218a8d;
-  --color-primary-dark: #1a6e70;
-  --color-secondary: #f97316;
-  --color-success: #10b981;
-  --color-danger: #ef4444;
-  --color-warning: #f59e0b;
-  
-  --color-white: #ffffff;
-  --color-gray-50: #f9fafb;
-  --color-gray-100: #f3f4f6;
-  --color-gray-200: #e5e7eb;
-  --color-gray-300: #d1d5db;
-  --color-gray-400: #9ca3af;
-  --color-gray-500: #6b7280;
-  --color-gray-600: #4b5563;
-  --color-gray-700: #374151;
-  --color-gray-800: #1f2937;
-  --color-gray-900: #111827;
-
-  /* Typography */
-  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.25rem;
-  --font-size-2xl: 1.5rem;
-  --font-size-3xl: 1.875rem;
-  --font-size-4xl: 2.25rem;
-
-  /* Spacing */
-  --spacing-1: 0.25rem;
-  --spacing-2: 0.5rem;
-  --spacing-3: 0.75rem;
-  --spacing-4: 1rem;
-  --spacing-6: 1.5rem;
-  --spacing-8: 2rem;
-  --spacing-12: 3rem;
-  --spacing-16: 4rem;
-
-  /* Borders */
-  --border-radius: 0.375rem;
-  --border-radius-lg: 0.5rem;
-  --border-radius-xl: 0.75rem;
-
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: var(--font-family);
-  font-size: var(--font-size-base);
-  line-height: 1.6;
-  color: var(--color-gray-800);
-  background-color: var(--color-gray-50);
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--spacing-4);
-}
-
-/* Header */
-.header {
-  background: var(--color-white);
-  box-shadow: var(--shadow-sm);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--spacing-4) 0;
-}
-
-.nav__brand {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-2);
-  font-size: var(--font-size-xl);
-  font-weight: 600;
-  color: var(--color-primary);
-}
-
-.nav__search {
-  flex: 1;
-  max-width: 400px;
-  margin: 0 var(--spacing-6);
-}
-
-.search-bar {
-  display: flex;
-  align-items: center;
-  background: var(--color-gray-100);
-  border-radius: var(--border-radius-lg);
-  padding: var(--spacing-2);
-}
-
-.search-bar i {
-  color: var(--color-gray-400);
-  margin-right: var(--spacing-2);
-}
-
-.search-bar input {
-  flex: 1;
-  border: none;
-  background: none;
-  outline: none;
-  font-size: var(--font-size-base);
-}
-
-.nav__menu {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-4);
-}
-
-.nav__link {
-  text-decoration: none;
-  color: var(--color-gray-600);
-  font-weight: 500;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.nav__link:hover,
-.nav__link.active {
-  color: var(--color-primary);
-}
-
-.nav__toggle {
-  display: none;
-  background: none;
-  border: none;
-  font-size: var(--font-size-xl);
-  color: var(--color-gray-600);
-  cursor: pointer;
-}
-
-/* Buttons */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-2);
-  padding: var(--spacing-2) var(--spacing-4);
-  border: 1px solid transparent;
-  border-radius: var(--border-radius);
-  font-size: var(--font-size-base);
-  font-weight: 500;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.btn--primary {
-  background: var(--color-primary);
-  color: var(--color-white);
-}
-
-.btn--primary:hover {
-  background: var(--color-primary-dark);
-}
-
-.btn--outline {
-  background: transparent;
-  color: var(--color-primary);
-  border-color: var(--color-primary);
-}
-
-.btn--outline:hover {
-  background: var(--color-primary);
-  color: var(--color-white);
-}
-
-.btn--text {
-  background: none;
-  color: var(--color-primary);
-  padding: var(--spacing-1) var(--spacing-2);
-}
-
-.btn--sm {
-  padding: var(--spacing-1) var(--spacing-3);
-  font-size: var(--font-size-sm);
-}
-
-.btn--lg {
-  padding: var(--spacing-3) var(--spacing-6);
-  font-size: var(--font-size-lg);
-}
-
-.btn--full {
-  width: 100%;
-}
-
-/* Hero Section */
-.hero {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
-  color: var(--color-white);
-  padding: var(--spacing-16) 0;
-  text-align: center;
-}
-
-.hero__title {
-  font-size: var(--font-size-4xl);
-  font-weight: 700;
-  margin-bottom: var(--spacing-4);
-}
-
-.hero__subtitle {
-  font-size: var(--font-size-xl);
-  margin-bottom: var(--spacing-8);
-  opacity: 0.9;
-}
-
-.hero__actions {
-  display: flex;
-  justify-content: center;
-  gap: var(--spacing-4);
-  margin-bottom: var(--spacing-12);
-}
-
-.hero__stats {
-  display: flex;
-  justify-content: center;
-  gap: var(--spacing-8);
-}
-
-.stat {
-  text-align: center;
-}
-
-.stat__number {
-  display: block;
-  font-size: var(--font-size-2xl);
-  font-weight: 700;
-}
-
-.stat__label {
-  font-size: var(--font-size-sm);
-  opacity: 0.8;
-}
-
-/* Sections */
-.section__title {
-  font-size: var(--font-size-3xl);
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: var(--spacing-8);
-  color: var(--color-gray-800);
-}
-
-.featured {
-  padding: var(--spacing-16) 0;
-}
-
-/* Properties Grid */
-.properties-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: var(--spacing-6);
-}
-
-.property-card {
-  background: var(--color-white);
-  border-radius: var(--border-radius-xl);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
-  cursor: pointer;
-}
-
-.property-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-}
-
-.property-card__image {
-  position: relative;
-  height: 200px;
-  overflow: hidden;
-}
-
-.property-card__image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.property-card__favorite {
-  position: absolute;
-  top: var(--spacing-3);
-  right: var(--spacing-3);
-  background: var(--color-white);
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: var(--shadow);
-}
-
-.property-card__favorite.active {
-  color: var(--color-danger);
-}
-
-.property-card__content {
-  padding: var(--spacing-4);
-}
-
-.property-card__price {
-  font-size: var(--font-size-xl);
-  font-weight: 700;
-  color: var(--color-primary);
-  margin-bottom: var(--spacing-2);
-}
-
-.property-card__title {
-  font-size: var(--font-size-lg);
-  font-weight: 600;
-  margin-bottom: var(--spacing-2);
-  color: var(--color-gray-800);
-}
-
-.property-card__location {
-  color: var(--color-gray-600);
-  margin-bottom: var(--spacing-3);
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-1);
-}
-
-.property-card__details {
-  display: flex;
-  gap: var(--spacing-4);
-  margin-bottom: var(--spacing-3);
-  font-size: var(--font-size-sm);
-  color: var(--color-gray-600);
-}
-
-.property-card__actions {
-  display: flex;
-  gap: var(--spacing-2);
-}
-
-/* Search Layout */
-.search-layout {
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: var(--spacing-6);
-  padding: var(--spacing-6) 0;
-}
-
-/* Filters */
-.filters {
-  background: var(--color-white);
-  padding: var(--spacing-6);
-  border-radius: var(--border-radius-xl);
-  box-shadow: var(--shadow);
-  height: fit-content;
-  position: sticky;
-  top: 100px;
-}
-
-.filters__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--spacing-6);
-}
-
-.filter-group {
-  margin-bottom: var(--spacing-6);
-}
-
-.filter-group label {
-  display: block;
-  font-weight: 500;
-  margin-bottom: var(--spacing-2);
-  color: var(--color-gray-700);
-}
-
-.filter-group input,
-.filter-group select {
-  width: 100%;
-  padding: var(--spacing-2);
-  border: 1px solid var(--color-gray-300);
-  border-radius: var(--border-radius);
-  font-size: var(--font-size-base);
-}
-
-.checkbox-group {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-2);
-}
-
-.checkbox-group label {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-2);
-  font-weight: normal;
-  margin-bottom: 0;
-}
-
-/* Range Slider */
-.range-slider {
-  position: relative;
-}
-
-.range-slider input {
-  width: 100%;
-  margin-bottom: var(--spacing-2);
-}
-
-.range-values {
-  display: flex;
-  justify-content: space-between;
-  font-size: var(--font-size-sm);
-  color: var(--color-gray-600);
-}
-
-/* Results */
-.results__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--spacing-6);
-}
-
-.results__info {
-  font-size: var(--font-size-lg);
-  color: var(--color-gray-700);
-}
-
-.results__sort select {
-  padding: var(--spacing-2);
-  border: 1px solid var(--color-gray-300);
-  border-radius: var(--border-radius);
-}
-
-/* Post Property */
-.post-property {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: var(--spacing-6) 0;
-}
-
-.wizard-header {
-  text-align: center;
-  margin-bottom: var(--spacing-8);
-}
-
-.wizard-steps {
-  display: flex;
-  justify-content: center;
-  gap: var(--spacing-4);
-  margin-top: var(--spacing-4);
-}
-
-.step {
-  padding: var(--spacing-2) var(--spacing-4);
-  border-radius: var(--border-radius);
-  background: var(--color-gray-200);
-  color: var(--color-gray-600);
-  font-size: var(--font-size-sm);
-}
-
-.step.active {
-  background: var(--color-primary);
-  color: var(--color-white);
-}
-
-.wizard-step {
-  display: none;
-  background: var(--color-white);
-  padding: var(--spacing-6);
-  border-radius: var(--border-radius-xl);
-  box-shadow: var(--shadow);
-}
-
-.wizard-step.active {
-  display: block;
-}
-
-.property-types {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--spacing-4);
-}
-
-.property-type-card input {
-  display: none;
-}
-
-.property-type-card .card {
-  padding: var(--spacing-6);
-  text-align: center;
-  border: 2px solid var(--color-gray-200);
-  border-radius: var(--border-radius-xl);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.property-type-card input:checked + .card {
-  border-color: var(--color-primary);
-  background: var(--color-primary);
-  color: var(--color-white);
-}
-
-.property-type-card .card i {
-  font-size: var(--font-size-3xl);
-  margin-bottom: var(--spacing-3);
-}
-
-.form-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: var(--spacing-4);
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group.full-width {
-  grid-column: 1 / -1;
-}
-
-.form-group label {
-  font-weight: 500;
-  margin-bottom: var(--spacing-2);
-  color: var(--color-gray-700);
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-  padding: var(--spacing-3);
-  border: 1px solid var(--color-gray-300);
-  border-radius: var(--border-radius);
-  font-size: var(--font-size-base);
-  transition: border-color 0.2s;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--color-primary);
-}
-
-/* Upload Area */
-.upload-area {
-  margin: var(--spacing-6) 0;
-}
-
-.upload-zone {
-  border: 2px dashed var(--color-gray-300);
-  border-radius: var(--border-radius-xl);
-  padding: var(--spacing-8);
-  text-align: center;
-  cursor: pointer;
-  transition: border-color 0.2s;
-}
-
-.upload-zone:hover {
-  border-color: var(--color-primary);
-}
-
-.upload-zone i {
-  font-size: var(--font-size-4xl);
-  color: var(--color-gray-400);
-  margin-bottom: var(--spacing-4);
-}
-
-.upload-zone input {
-  display: none;
-}
-
-.image-preview {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: var(--spacing-3);
-  margin-top: var(--spacing-4);
-}
-
-.image-preview-item {
-  position: relative;
-  aspect-ratio: 1;
-  border-radius: var(--border-radius);
-  overflow: hidden;
-}
-
-.image-preview-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.image-preview-item button {
-  position: absolute;
-  top: var(--spacing-1);
-  right: var(--spacing-1);
-  background: var(--color-danger);
-  color: var(--color-white);
-  border: none;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: var(--font-size-xs);
-}
-
-.warning-banner {
-  background: var(--color-warning);
-  color: var(--color-gray-800);
-  padding: var(--spacing-4);
-  border-radius: var(--border-radius);
-  margin-bottom: var(--spacing-6);
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-2);
-}
-
-.wizard-actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: var(--spacing-8);
-}
-
-/* Modals */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.modal.active {
-  display: flex;
-}
-
-.modal__content {
-  background: var(--color-white);
-  border-radius: var(--border-radius-xl);
-  padding: var(--spacing-6);
-  max-width: 400px;
-  width: 90%;
-  max-height: 90vh;
-  overflow-y: auto;
-}
-
-.modal__content--large {
-  max-width: 600px;
-}
-
-.modal__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--spacing-6);
-}
-
-.modal__close {
-  background: none;
-  border: none;
-  font-size: var(--font-size-2xl);
-  cursor: pointer;
-  color: var(--color-gray-400);
-}
-
-/* Footer */
-.footer {
-  background: var(--color-gray-800);
-  color: var(--color-gray-300);
-  padding: var(--spacing-8) 0;
-  margin-top: var(--spacing-16);
-}
-
-.footer__content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--spacing-4);
-}
-
-.footer__brand h3 {
-  color: var(--color-white);
-  margin-bottom: var(--spacing-2);
-}
-
-.footer__links {
-  display: flex;
-  gap: var(--spacing-4);
-}
-
-.footer__links a {
-  color: var(--color-gray-300);
-  text-decoration: none;
-}
-
-.footer__bottom {
-  text-align: center;
-  padding-top: var(--spacing-4);
-  border-top: 1px solid var(--color-gray-700);
-}
-
-/* Toast */
-.toast-container {
-  position: fixed;
-  top: var(--spacing-4);
-  right: var(--spacing-4);
-  z-index: 2000;
-}
-
-.toast {
-  background: var(--color-white);
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow-lg);
-  padding: var(--spacing-4);
-  margin-bottom: var(--spacing-2);
-  min-width: 300px;
-  animation: slideIn 0.3s ease;
-}
-
-.toast--success {
-  border-left: 4px solid var(--color-success);
-}
-
-.toast--error {
-  border-left: 4px solid var(--color-danger);
-}
-
-@keyframes slideIn {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-/* Utility Classes */
-.hidden {
-  display: none !important;
-}
-
-.page {
-  display: none;
-}
-
-.page.active {
-  display: block;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .nav__search {
-    display: none;
-  }
-  
-  .nav__menu {
-    position: fixed;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: var(--color-white);
-    flex-direction: column;
-    padding: var(--spacing-4);
-    box-shadow: var(--shadow);
-    transform: translateY(-100%);
-    transition: transform 0.3s;
-  }
-  
-  .nav__menu.active {
-    transform: translateY(0);
-  }
-  
-  .nav__toggle {
-    display: block;
-  }
-  
-  .hero__title {
-    font-size: var(--font-size-3xl);
-  }
-  
-  .hero__actions {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .hero__stats {
-    flex-direction: column;
-    gap: var(--spacing-4);
-  }
-  
-  .search-layout {
-    grid-template-columns: 1fr;
-  }
-  
-  .filters {
-    position: static;
-  }
-  
-  .property-types {
-    grid-template-columns: 1fr;
-  }
-  
-  .form-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .wizard-actions {
-    flex-direction: column;
-    gap: var(--spacing-3);
-  }
-  
-  .footer__content {
-    flex-direction: column;
-    gap: var(--spacing-4);
-    text-align: center;
-  }
-  
-  .footer__links {
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 0 var(--spacing-2);
-  }
-  
-  .properties-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .modal__content {
-    margin: var(--spacing-4);
-    width: calc(100% - 2rem);
-  }
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PropLink Delhi - Find Your Perfect Property</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="nav__brand">
+                <i class="fas fa-home"></i>
+                <span>PropLink Delhi</span>
+            </div>
+            
+            <div class="nav__search">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search properties..." id="searchInput">
+                    <button class="btn btn--primary btn--sm" id="searchBtn">Search</button>
+                </div>
+            </div>
+
+            <div class="nav__menu" id="navMenu">
+                <a href="#" class="nav__link active" data-page="home">Home</a>
+                <a href="#" class="nav__link" data-page="buy">Buy</a>
+                <a href="#" class="nav__link" data-page="rent">Rent</a>
+                <a href="#" class="nav__link" data-page="pg">PG/Hostels</a>
+                <a href="#" class="nav__link" data-page="post">Post Property</a>
+                <a href="#" class="nav__link" data-page="saved">Saved</a>
+                <a href="#" class="nav__link" data-page="profile">Profile</a>
+            </div>
+
+            <button class="nav__toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Homepage -->
+        <section id="homePage" class="page active">
+            <!-- Hero Section -->
+            <div class="hero">
+                <div class="container">
+                    <div class="hero__content">
+                        <h1 class="hero__title">Find Your Perfect Property in Delhi NCR</h1>
+                        <p class="hero__subtitle">No Brokers, No Hassle - Direct from Owners</p>
+                        
+                        <div class="hero__search">
+                            <select class="form-control" id="locationFilter">
+                                <option value="">Select Location</option>
+                            </select>
+                            <select class="form-control" id="propertyTypeFilter">
+                                <option value="">Property Type</option>
+                            </select>
+                            <button class="btn btn--primary" id="heroSearchBtn">
+                                <i class="fas fa-search"></i> Search Properties
+                            </button>
+                        </div>
+
+                        <div class="hero__actions">
+                            <button class="btn btn--outline" data-page="buy">Buy Property</button>
+                            <button class="btn btn--outline" data-page="rent">Rent Property</button>
+                            <button class="btn btn--outline" data-page="pg">Find PG</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="stats">
+                <div class="container">
+                    <div class="stats__grid">
+                        <div class="stats__item">
+                            <div class="stats__number">10,000+</div>
+                            <div class="stats__label">Properties</div>
+                        </div>
+                        <div class="stats__item">
+                            <div class="stats__number">5,000+</div>
+                            <div class="stats__label">Happy Customers</div>
+                        </div>
+                        <div class="stats__item">
+                            <div class="stats__number">Zero</div>
+                            <div class="stats__label">Brokerage</div>
+                        </div>
+                        <div class="stats__item">
+                            <div class="stats__number">24/7</div>
+                            <div class="stats__label">Support</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Properties -->
+            <div class="featured">
+                <div class="container">
+                    <h2 class="featured__title">Featured Properties</h2>
+                    <div class="properties__grid" id="featuredProperties">
+                        <!-- Properties will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonials -->
+            <div class="testimonials">
+                <div class="container">
+                    <h2 class="testimonials__title">What Our Customers Say</h2>
+                    <div class="testimonials__grid">
+                        <div class="testimonial">
+                            <div class="testimonial__content">
+                                <p>"Found my dream apartment in Gurgaon without any broker commission. Excellent platform!"</p>
+                                <div class="testimonial__author">
+                                    <strong>Rahul Sharma</strong>
+                                    <span>Software Engineer</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial">
+                            <div class="testimonial__content">
+                                <p>"Great experience renting out my property. Direct contact with genuine buyers."</p>
+                                <div class="testimonial__author">
+                                    <strong>Priya Gupta</strong>
+                                    <span>Property Owner</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial">
+                            <div class="testimonial__content">
+                                <p>"Best PG finding platform in Delhi. Safe and verified listings."</p>
+                                <div class="testimonial__author">
+                                    <strong>Anjali Singh</strong>
+                                    <span>Student</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Property Listings Page -->
+        <section id="propertiesPage" class="page">
+            <div class="container">
+                <div class="page__header">
+                    <h2 id="pageTitle">Property Listings</h2>
+                    <div class="page__actions">
+                        <button class="btn btn--outline" id="mapViewToggle">
+                            <i class="fas fa-map"></i> Map View
+                        </button>
+                        <select class="form-control" id="sortBy">
+                            <option value="newest">Newest First</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="listings__container">
+                    <aside class="filters">
+                        <h3>Filters</h3>
+                        
+                        <div class="filter-group">
+                            <label>Location</label>
+                            <select class="form-control" id="filterLocation">
+                                <option value="">All Locations</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label>Property Type</label>
+                            <select class="form-control" id="filterPropertyType">
+                                <option value="">All Types</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label>Price Range</label>
+                            <div class="price-inputs">
+                                <input type="number" class="form-control" id="minPrice" placeholder="Min Price">
+                                <input type="number" class="form-control" id="maxPrice" placeholder="Max Price">
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <label>BHK</label>
+                            <select class="form-control" id="filterBHK">
+                                <option value="">Any BHK</option>
+                                <option value="1">1 BHK</option>
+                                <option value="2">2 BHK</option>
+                                <option value="3">3 BHK</option>
+                                <option value="4">4+ BHK</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label>Furnishing</label>
+                            <select class="form-control" id="filterFurnishing">
+                                <option value="">Any</option>
+                                <option value="Fully-Furnished">Fully Furnished</option>
+                                <option value="Semi-Furnished">Semi Furnished</option>
+                                <option value="Unfurnished">Unfurnished</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label>Amenities</label>
+                            <div class="amenities-list" id="amenitiesFilter">
+                                <!-- Amenities checkboxes will be loaded here -->
+                            </div>
+                        </div>
+
+                        <div class="filter-actions">
+                            <button class="btn btn--primary btn--full-width" id="applyFilters">Apply Filters</button>
+                            <button class="btn btn--outline btn--full-width" id="clearFilters">Clear All</button>
+                        </div>
+                    </aside>
+
+                    <div class="listings__content">
+                        <div class="listings__results">
+                            <span id="resultsCount">0 properties found</span>
+                        </div>
+                        <div class="properties__grid" id="propertiesList">
+                            <!-- Properties will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Property Details Page -->
+        <section id="propertyDetailsPage" class="page">
+            <div class="container">
+                <div class="property-details" id="propertyDetailsContent">
+                    <!-- Property details will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Post Property Page -->
+        <section id="postPropertyPage" class="page">
+            <div class="container">
+                <div class="post-property">
+                    <h2>Post Your Property</h2>
+                    <div class="form-wizard">
+                        <div class="wizard-steps">
+                            <div class="step active" data-step="1">1. Property Type</div>
+                            <div class="step" data-step="2">2. Basic Details</div>
+                            <div class="step" data-step="3">3. Description</div>
+                            <div class="step" data-step="4">4. Photos</div>
+                            <div class="step" data-step="5">5. Contact Info</div>
+                        </div>
+
+                        <form id="postPropertyForm">
+                            <div class="step-content active" data-step="1">
+                                <h3>Select Property Type</h3>
+                                <div class="property-types">
+                                    <label class="property-type-option">
+                                        <input type="radio" name="propertyType" value="Apartment">
+                                        <div class="option-card">
+                                            <i class="fas fa-building"></i>
+                                            <span>Apartment</span>
+                                        </div>
+                                    </label>
+                                    <label class="property-type-option">
+                                        <input type="radio" name="propertyType" value="Villa">
+                                        <div class="option-card">
+                                            <i class="fas fa-home"></i>
+                                            <span>Villa</span>
+                                        </div>
+                                    </label>
+                                    <label class="property-type-option">
+                                        <input type="radio" name="propertyType" value="Plot">
+                                        <div class="option-card">
+                                            <i class="fas fa-map"></i>
+                                            <span>Plot</span>
+                                        </div>
+                                    </label>
+                                    <label class="property-type-option">
+                                        <input type="radio" name="propertyType" value="Commercial">
+                                        <div class="option-card">
+                                            <i class="fas fa-store"></i>
+                                            <span>Commercial</span>
+                                        </div>
+                                    </label>
+                                    <label class="property-type-option">
+                                        <input type="radio" name="propertyType" value="PG">
+                                        <div class="option-card">
+                                            <i class="fas fa-bed"></i>
+                                            <span>PG/Hostel</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="step-content" data-step="2">
+                                <h3>Basic Property Details</h3>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-label">Property Title</label>
+                                        <input type="text" class="form-control" name="title" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Location</label>
+                                        <select class="form-control" name="location" required>
+                                            <option value="">Select Location</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-label">Price (₹)</label>
+                                        <input type="number" class="form-control" name="price" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Area (sq ft)</label>
+                                        <input type="number" class="form-control" name="area" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-label">Bedrooms</label>
+                                        <select class="form-control" name="bedrooms">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4+</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Bathrooms</label>
+                                        <select class="form-control" name="bathrooms">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4+</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="step-content" data-step="3">
+                                <h3>Property Description</h3>
+                                <div class="form-group">
+                                    <label class="form-label">Description</label>
+                                    <textarea class="form-control" name="description" rows="6" placeholder="Describe your property..."></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Amenities</label>
+                                    <div class="amenities-grid" id="postAmenities">
+                                        <!-- Amenities checkboxes will be loaded here -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="step-content" data-step="4">
+                                <h3>Upload Photos</h3>
+                                <div class="photo-upload">
+                                    <div class="upload-area" id="photoUpload">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <p>Drag and drop photos here or click to select</p>
+                                        <input type="file" multiple accept="image/*" id="photoInput">
+                                    </div>
+                                    <div class="photo-preview" id="photoPreview">
+                                        <!-- Photo previews will appear here -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="step-content" data-step="5">
+                                <h3>Contact Information</h3>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-label">Your Name</label>
+                                        <input type="text" class="form-control" name="ownerName" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" name="ownerPhone" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" name="ownerEmail">
+                                </div>
+                                <div class="form-group">
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="terms" required>
+                                        I agree to the Terms and Conditions
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="wizard-actions">
+                                <button type="button" class="btn btn--outline" id="prevStep">Previous</button>
+                                <button type="button" class="btn btn--primary" id="nextStep">Next</button>
+                                <button type="submit" class="btn btn--primary hidden" id="submitProperty">Post Property</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Saved Properties Page -->
+        <section id="savedPage" class="page">
+            <div class="container">
+                <h2>Saved Properties</h2>
+                <div class="properties__grid" id="savedProperties">
+                    <!-- Saved properties will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile Page -->
+        <section id="profilePage" class="page">
+            <div class="container">
+                <div class="profile">
+                    <h2>My Profile</h2>
+                    <div class="profile-tabs">
+                        <button class="tab-btn active" data-tab="personal">Personal Info</button>
+                        <button class="tab-btn" data-tab="properties">My Properties</button>
+                        <button class="tab-btn" data-tab="settings">Settings</button>
+                    </div>
+                    
+                    <div class="tab-content active" data-tab="personal">
+                        <form class="profile-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" class="form-control" value="John Doe">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" value="john@example.com">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Phone</label>
+                                    <input type="tel" class="form-control" value="+91 98765 43210">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Location</label>
+                                    <input type="text" class="form-control" value="Delhi">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn--primary">Update Profile</button>
+                        </form>
+                    </div>
+                    
+                    <div class="tab-content" data-tab="properties">
+                        <div class="my-properties">
+                            <div class="properties__grid" id="myProperties">
+                                <!-- User's posted properties will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" data-tab="settings">
+                        <div class="settings">
+                            <h3>Notification Settings</h3>
+                            <div class="setting-item">
+                                <label class="checkbox">
+                                    <input type="checkbox" checked>
+                                    Email notifications for new matches
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <label class="checkbox">
+                                    <input type="checkbox" checked>
+                                    SMS alerts for property updates
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <label class="checkbox">
+                                    <input type="checkbox">
+                                    Marketing communications
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__section">
+                    <h4>PropLink Delhi</h4>
+                    <p>Your trusted property partner in Delhi NCR. Find your perfect home without any broker commission.</p>
+                </div>
+                <div class="footer__section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#" data-page="buy">Buy Property</a></li>
+                        <li><a href="#" data-page="rent">Rent Property</a></li>
+                        <li><a href="#" data-page="pg">PG/Hostels</a></li>
+                        <li><a href="#" data-page="post">Post Property</a></li>
+                    </ul>
+                </div>
+                <div class="footer__section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer__section">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-envelope"></i> info@proplinkdelhi.com</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2025 PropLink Delhi. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
