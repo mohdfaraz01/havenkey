@@ -3,48 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HavenKey - Find Your Perfect Property | No Broker</title>
-    <meta name="description" content="Find properties for buy, rent, or PG in Delhi NCR. No brokers, direct from owners. Best property portal for Delhi, Gurgaon, Noida, Faridabad.">
-    <meta name="keywords" content="Delhi property, NCR real estate, no broker, buy property Delhi, rent property Delhi, PG Delhi, Gurgaon properties, Noida properties">
-    <meta name="author" content="HavenKey">
-    
-    <!-- PWA Meta Tags -->
-    <meta name="theme-color" content="#218a8d">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="HavenKey">
-    <meta name="mobile-web-app-capable" content="yes">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="HavenKey - Find Your Perfect Property">
-    <meta property="og:description" content="No broker property portal for Delhi NCR. Direct from owners.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://havenkey.vercel.app">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&h=630&fit=crop">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="HavenKey - Find Your Perfect Property">
-    <meta name="twitter:description" content="No broker property portal for Delhi NCR. Direct from owners.">
-    <meta name="twitter:image" content="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&h=630&fit=crop">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='24' font-size='24'>🔑</text></svg>">
-    
-    <!-- Manifest -->
-    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkhhdmVuS2V5IiwKICAic2hvcnRfbmFtZSI6ICJIYXZlbktleSIsCiAgImRlc2NyaXB0aW9uIjogIkZpbmQgeW91ciBwZXJmZWN0IHByb3BlcnR5IGluIERlbGhpIE5DUi4gTm8gYnJva2VycyEiLAogICJzdGFydF91cmwiOiAiLyIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgInRoZW1lX2NvbG9yIjogIiMyMThhOGQiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiNmY2ZjZjkiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICIvaWNvbi0xOTIucG5nIiwKICAgICAgInR5cGUiOiAiaW1hZ2UvcG5nIiwKICAgICAgInNpemVzIjogIjE5MngxOTIiCiAgICB9LAogICAgewogICAgICAic3JjIjogIi9pY29uLTUxMi5wbmciLAogICAgICAidHlwZSI6ICJpbWFnZS9wbmciLAogICAgICAic2l6ZXMiOiAiNTEyeDUxMiIKICAgIH0KICBdCn0=">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <title>PropLink Delhi - Find Your Perfect Property</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- Navigation Header -->
     <header class="header">
         <nav class="nav container">
             <div class="nav__brand">
-                <i class="fas fa-key"></i>
-                <span>HavenKey</span>
+                <i class="fas fa-home"></i>
+                <span>PropLink Delhi</span>
             </div>
             
             <div class="nav__search">
@@ -61,15 +30,8 @@
                 <a href="#" class="nav__link" data-page="rent">Rent</a>
                 <a href="#" class="nav__link" data-page="pg">PG/Hostels</a>
                 <a href="#" class="nav__link" data-page="post">Post Property</a>
-                <div id="authLinks">
-                    <button class="btn btn--outline btn--sm" id="loginBtn">Login</button>
-                    <button class="btn btn--primary btn--sm" id="signupBtn">Sign Up</button>
-                </div>
-                <div id="userLinks" class="hidden">
-                    <a href="#" class="nav__link" data-page="favourites">Favourites</a>
-                    <a href="#" class="nav__link" data-page="profile">Profile</a>
-                    <button class="btn btn--outline btn--sm" id="logoutBtn">Logout</button>
-                </div>
+                <a href="#" class="nav__link" data-page="saved">Saved</a>
+                <a href="#" class="nav__link" data-page="profile">Profile</a>
             </div>
 
             <button class="nav__toggle" id="navToggle">
@@ -89,119 +51,183 @@
                         <h1 class="hero__title">Find Your Perfect Property in Delhi NCR</h1>
                         <p class="hero__subtitle">No Brokers, No Hassle - Direct from Owners</p>
                         
-                        <div class="hero__actions">
-                            <button class="btn btn--primary btn--lg" id="nearMeBtn">
-                                <i class="fas fa-location-arrow"></i>
-                                Search Near Me
+                        <div class="hero__search">
+                            <select class="form-control" id="locationFilter">
+                                <option value="">Select Location</option>
+                            </select>
+                            <select class="form-control" id="propertyTypeFilter">
+                                <option value="">Property Type</option>
+                            </select>
+                            <button class="btn btn--primary" id="heroSearchBtn">
+                                <i class="fas fa-search"></i> Search Properties
                             </button>
-                            <button class="btn btn--outline btn--lg" data-page="buy">Browse Properties</button>
                         </div>
-                        
-                        <div class="hero__stats">
-                            <div class="stat">
-                                <span class="stat__number">10,000+</span>
-                                <span class="stat__label">Properties</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat__number">5,000+</span>
-                                <span class="stat__label">Happy Customers</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat__number">Zero</span>
-                                <span class="stat__label">Brokerage</span>
-                            </div>
+
+                        <div class="hero__actions">
+                            <button class="btn btn--outline" data-page="buy">Buy Property</button>
+                            <button class="btn btn--outline" data-page="rent">Rent Property</button>
+                            <button class="btn btn--outline" data-page="pg">Find PG</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="stats">
+                <div class="container">
+                    <div class="stats__grid">
+                        <div class="stats__item">
+                            <div class="stats__number">10,000+</div>
+                            <div class="stats__label">Properties</div>
+                        </div>
+                        <div class="stats__item">
+                            <div class="stats__number">5,000+</div>
+                            <div class="stats__label">Happy Customers</div>
+                        </div>
+                        <div class="stats__item">
+                            <div class="stats__number">Zero</div>
+                            <div class="stats__label">Brokerage</div>
+                        </div>
+                        <div class="stats__item">
+                            <div class="stats__number">24/7</div>
+                            <div class="stats__label">Support</div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Featured Properties -->
-            <section class="featured">
+            <div class="featured">
                 <div class="container">
-                    <h2 class="section__title">Featured Properties</h2>
-                    <div class="properties-grid" id="featuredProperties">
+                    <h2 class="featured__title">Featured Properties</h2>
+                    <div class="properties__grid" id="featuredProperties">
                         <!-- Properties will be loaded here -->
                     </div>
                 </div>
-            </section>
-        </section>
+            </div>
 
-        <!-- Property Search Page -->
-        <section id="buyPage" class="page">
-            <div class="container">
-                <div class="search-layout">
-                    <!-- Filter Sidebar -->
-                    <aside class="filters">
-                        <div class="filters__header">
-                            <h3>Filters</h3>
-                            <button class="btn btn--text" id="clearFilters">Clear All</button>
-                        </div>
-                        
-                        <div class="filter-group">
-                            <label>Budget Range</label>
-                            <div class="range-slider">
-                                <input type="range" id="minBudget" min="20000" max="100000000" value="20000">
-                                <input type="range" id="maxBudget" min="20000" max="100000000" value="100000000">
-                                <div class="range-values">
-                                    <span id="minBudgetValue">₹20K</span>
-                                    <span id="maxBudgetValue">₹10Cr</span>
+            <!-- Testimonials -->
+            <div class="testimonials">
+                <div class="container">
+                    <h2 class="testimonials__title">What Our Customers Say</h2>
+                    <div class="testimonials__grid">
+                        <div class="testimonial">
+                            <div class="testimonial__content">
+                                <p>"Found my dream apartment in Gurgaon without any broker commission. Excellent platform!"</p>
+                                <div class="testimonial__author">
+                                    <strong>Rahul Sharma</strong>
+                                    <span>Software Engineer</span>
                                 </div>
                             </div>
                         </div>
+                        <div class="testimonial">
+                            <div class="testimonial__content">
+                                <p>"Great experience renting out my property. Direct contact with genuine buyers."</p>
+                                <div class="testimonial__author">
+                                    <strong>Priya Gupta</strong>
+                                    <span>Property Owner</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial">
+                            <div class="testimonial__content">
+                                <p>"Best PG finding platform in Delhi. Safe and verified listings."</p>
+                                <div class="testimonial__author">
+                                    <strong>Anjali Singh</strong>
+                                    <span>Student</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+        <!-- Property Listings Page -->
+        <section id="propertiesPage" class="page">
+            <div class="container">
+                <div class="page__header">
+                    <h2 id="pageTitle">Property Listings</h2>
+                    <div class="page__actions">
+                        <button class="btn btn--outline" id="mapViewToggle">
+                            <i class="fas fa-map"></i> Map View
+                        </button>
+                        <select class="form-control" id="sortBy">
+                            <option value="newest">Newest First</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="listings__container">
+                    <aside class="filters">
+                        <h3>Filters</h3>
+                        
                         <div class="filter-group">
-                            <label>Property Type</label>
-                            <select id="propertyType">
-                                <option value="">All Types</option>
-                                <option value="Apartment">Apartment</option>
-                                <option value="Villa">Villa</option>
-                                <option value="Plot">Plot</option>
-                                <option value="Commercial">Commercial</option>
-                                <option value="PG">PG/Hostel</option>
+                            <label>Location</label>
+                            <select class="form-control" id="filterLocation">
+                                <option value="">All Locations</option>
                             </select>
                         </div>
 
                         <div class="filter-group">
-                            <label>BHK</label>
-                            <div class="checkbox-group">
-                                <label><input type="checkbox" value="1" name="bhk"> 1 BHK</label>
-                                <label><input type="checkbox" value="2" name="bhk"> 2 BHK</label>
-                                <label><input type="checkbox" value="3" name="bhk"> 3 BHK</label>
-                                <label><input type="checkbox" value="4" name="bhk"> 4+ BHK</label>
+                            <label>Property Type</label>
+                            <select class="form-control" id="filterPropertyType">
+                                <option value="">All Types</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label>Price Range</label>
+                            <div class="price-inputs">
+                                <input type="number" class="form-control" id="minPrice" placeholder="Min Price">
+                                <input type="number" class="form-control" id="maxPrice" placeholder="Max Price">
                             </div>
                         </div>
 
                         <div class="filter-group">
+                            <label>BHK</label>
+                            <select class="form-control" id="filterBHK">
+                                <option value="">Any BHK</option>
+                                <option value="1">1 BHK</option>
+                                <option value="2">2 BHK</option>
+                                <option value="3">3 BHK</option>
+                                <option value="4">4+ BHK</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
                             <label>Furnishing</label>
-                            <select id="furnishing">
-                                <option value="">All</option>
+                            <select class="form-control" id="filterFurnishing">
+                                <option value="">Any</option>
                                 <option value="Fully-Furnished">Fully Furnished</option>
                                 <option value="Semi-Furnished">Semi Furnished</option>
                                 <option value="Unfurnished">Unfurnished</option>
                             </select>
                         </div>
+
+                        <div class="filter-group">
+                            <label>Amenities</label>
+                            <div class="amenities-list" id="amenitiesFilter">
+                                <!-- Amenities checkboxes will be loaded here -->
+                            </div>
+                        </div>
+
+                        <div class="filter-actions">
+                            <button class="btn btn--primary btn--full-width" id="applyFilters">Apply Filters</button>
+                            <button class="btn btn--outline btn--full-width" id="clearFilters">Clear All</button>
+                        </div>
                     </aside>
 
-                    <!-- Results Area -->
-                    <main class="results">
-                        <div class="results__header">
-                            <div class="results__info">
-                                <span id="resultCount">0 properties found</span>
-                            </div>
-                            <div class="results__sort">
-                                <select id="sortBy">
-                                    <option value="date">Newest First</option>
-                                    <option value="price-low">Price: Low to High</option>
-                                    <option value="price-high">Price: High to Low</option>
-                                    <option value="area">Area</option>
-                                </select>
-                            </div>
+                    <div class="listings__content">
+                        <div class="listings__results">
+                            <span id="resultsCount">0 properties found</span>
                         </div>
-
-                        <div class="properties-grid" id="searchResults">
-                            <!-- Search results will be loaded here -->
+                        <div class="properties__grid" id="propertiesList">
+                            <!-- Properties will be loaded here -->
                         </div>
-                    </main>
+                    </div>
                 </div>
             </div>
         </section>
@@ -209,210 +235,183 @@
         <!-- Property Details Page -->
         <section id="propertyDetailsPage" class="page">
             <div class="container">
-                <div id="propertyDetails">
+                <div class="property-details" id="propertyDetailsContent">
                     <!-- Property details will be loaded here -->
                 </div>
             </div>
         </section>
 
         <!-- Post Property Page -->
-        <section id="postPage" class="page">
+        <section id="postPropertyPage" class="page">
             <div class="container">
                 <div class="post-property">
-                    <div class="wizard-header">
-                        <h2>Post Your Property</h2>
+                    <h2>Post Your Property</h2>
+                    <div class="form-wizard">
                         <div class="wizard-steps">
                             <div class="step active" data-step="1">1. Property Type</div>
-                            <div class="step" data-step="2">2. Details</div>
-                            <div class="step" data-step="3">3. Images</div>
-                            <div class="step" data-step="4">4. Contact</div>
-                        </div>
-                    </div>
-
-                    <form id="postPropertyForm">
-                        <!-- Step 1: Property Type -->
-                        <div class="wizard-step active" data-step="1">
-                            <h3>Select Property Type</h3>
-                            <div class="property-types">
-                                <label class="property-type-card">
-                                    <input type="radio" name="propertyType" value="Apartment">
-                                    <div class="card">
-                                        <i class="fas fa-building"></i>
-                                        <h4>Apartment</h4>
-                                        <p>Flat in a residential building</p>
-                                    </div>
-                                </label>
-                                <label class="property-type-card">
-                                    <input type="radio" name="propertyType" value="Villa">
-                                    <div class="card">
-                                        <i class="fas fa-home"></i>
-                                        <h4>Villa/House</h4>
-                                        <p>Independent house or villa</p>
-                                    </div>
-                                </label>
-                                <label class="property-type-card">
-                                    <input type="radio" name="propertyType" value="PG">
-                                    <div class="card">
-                                        <i class="fas fa-bed"></i>
-                                        <h4>PG/Hostel</h4>
-                                        <p>Paying guest accommodation</p>
-                                    </div>
-                                </label>
-                                <label class="property-type-card">
-                                    <input type="radio" name="propertyType" value="Commercial">
-                                    <div class="card">
-                                        <i class="fas fa-store"></i>
-                                        <h4>Commercial</h4>
-                                        <p>Office, shop, or commercial space</p>
-                                    </div>
-                                </label>
-                            </div>
+                            <div class="step" data-step="2">2. Basic Details</div>
+                            <div class="step" data-step="3">3. Description</div>
+                            <div class="step" data-step="4">4. Photos</div>
+                            <div class="step" data-step="5">5. Contact Info</div>
                         </div>
 
-                        <!-- Step 2: Property Details -->
-                        <div class="wizard-step" data-step="2">
-                            <h3>Property Details</h3>
-                            <div class="form-grid">
-                                <div class="form-group">
-                                    <label>Property Title</label>
-                                    <input type="text" name="title" required>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Location</label>
-                                    <input type="text" name="location" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Sale Price (₹)</label>
-                                    <input type="number" name="price" min="20000">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Rent Price (₹/month)</label>
-                                    <input type="number" name="rentPrice" min="0">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Area (sq ft)</label>
-                                    <input type="number" name="areaSqft" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>BHK</label>
-                                    <select name="bhk">
-                                        <option value="1">1 BHK</option>
-                                        <option value="2">2 BHK</option>
-                                        <option value="3">3 BHK</option>
-                                        <option value="4">4+ BHK</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Bathrooms</label>
-                                    <select name="bathrooms">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4+</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Facing Direction</label>
-                                    <select name="facingDirection">
-                                        <option value="North">North</option>
-                                        <option value="South">South</option>
-                                        <option value="East">East</option>
-                                        <option value="West">West</option>
-                                        <option value="North-East">North-East</option>
-                                        <option value="North-West">North-West</option>
-                                        <option value="South-East">South-East</option>
-                                        <option value="South-West">South-West</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Furnishing Status</label>
-                                    <select name="furnishingStatus">
-                                        <option value="Unfurnished">Unfurnished</option>
-                                        <option value="Semi-Furnished">Semi Furnished</option>
-                                        <option value="Fully-Furnished">Fully Furnished</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group full-width">
-                                    <label>Description</label>
-                                    <textarea name="description" rows="4" required></textarea>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Step 3: Images Upload -->
-                        <div class="wizard-step" data-step="3">
-                            <h3>Upload Property Images</h3>
-                            <div class="upload-area">
-                                <div class="upload-zone" id="uploadZone">
-                                    <i class="fas fa-cloud-upload-alt"></i>
-                                    <p>Drag & drop images here or click to browse</p>
-                                    <input type="file" id="imageInput" multiple accept="image/*,video/*">
-                                    <button type="button" class="btn btn--primary">Choose Files</button>
-                                </div>
-                                <div class="image-preview" id="imagePreview">
-                                    <!-- Uploaded images preview will appear here -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Step 4: Contact Information -->
-                        <div class="wizard-step" data-step="4">
-                            <h3>Contact Information</h3>
-                            <div class="warning-banner">
-                                <i class="fas fa-exclamation-triangle"></i>
-                                <strong>Warning:</strong> Posting fake or misleading property information may result in permanent account suspension and legal action. Please ensure all details are accurate.
-                            </div>
-                            
-                            <div class="form-grid">
-                                <div class="form-group">
-                                    <label>Your Name</label>
-                                    <input type="text" name="ownerName" required>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Email</label>
-                                    <input type="email" name="ownerEmail" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Phone Number</label>
-                                    <input type="tel" name="ownerPhone" required>
-                                </div>
-
-                                <div class="form-group full-width">
-                                    <label>
-                                        <input type="checkbox" required>
-                                        I agree to the <a href="#" id="termsLink">Terms & Conditions</a>
+                        <form id="postPropertyForm">
+                            <div class="step-content active" data-step="1">
+                                <h3>Select Property Type</h3>
+                                <div class="property-types">
+                                    <label class="property-type-option">
+                                        <input type="radio" name="propertyType" value="Apartment">
+                                        <div class="option-card">
+                                            <i class="fas fa-building"></i>
+                                            <span>Apartment</span>
+                                        </div>
+                                    </label>
+                                    <label class="property-type-option">
+                                        <input type="radio" name="propertyType" value="Villa">
+                                        <div class="option-card">
+                                            <i class="fas fa-home"></i>
+                                            <span>Villa</span>
+                                        </div>
+                                    </label>
+                                    <label class="property-type-option">
+                                        <input type="radio" name="propertyType" value="Plot">
+                                        <div class="option-card">
+                                            <i class="fas fa-map"></i>
+                                            <span>Plot</span>
+                                        </div>
+                                    </label>
+                                    <label class="property-type-option">
+                                        <input type="radio" name="propertyType" value="Commercial">
+                                        <div class="option-card">
+                                            <i class="fas fa-store"></i>
+                                            <span>Commercial</span>
+                                        </div>
+                                    </label>
+                                    <label class="property-type-option">
+                                        <input type="radio" name="propertyType" value="PG">
+                                        <div class="option-card">
+                                            <i class="fas fa-bed"></i>
+                                            <span>PG/Hostel</span>
+                                        </div>
                                     </label>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="wizard-actions">
-                            <button type="button" class="btn btn--outline" id="prevBtn">Previous</button>
-                            <button type="button" class="btn btn--primary" id="nextBtn">Next</button>
-                            <button type="submit" class="btn btn--primary hidden" id="submitBtn">Post Property</button>
-                        </div>
-                    </form>
+                            <div class="step-content" data-step="2">
+                                <h3>Basic Property Details</h3>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-label">Property Title</label>
+                                        <input type="text" class="form-control" name="title" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Location</label>
+                                        <select class="form-control" name="location" required>
+                                            <option value="">Select Location</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-label">Price (₹)</label>
+                                        <input type="number" class="form-control" name="price" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Area (sq ft)</label>
+                                        <input type="number" class="form-control" name="area" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-label">Bedrooms</label>
+                                        <select class="form-control" name="bedrooms">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4+</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Bathrooms</label>
+                                        <select class="form-control" name="bathrooms">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4+</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="step-content" data-step="3">
+                                <h3>Property Description</h3>
+                                <div class="form-group">
+                                    <label class="form-label">Description</label>
+                                    <textarea class="form-control" name="description" rows="6" placeholder="Describe your property..."></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Amenities</label>
+                                    <div class="amenities-grid" id="postAmenities">
+                                        <!-- Amenities checkboxes will be loaded here -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="step-content" data-step="4">
+                                <h3>Upload Photos</h3>
+                                <div class="photo-upload">
+                                    <div class="upload-area" id="photoUpload">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <p>Drag and drop photos here or click to select</p>
+                                        <input type="file" multiple accept="image/*" id="photoInput">
+                                    </div>
+                                    <div class="photo-preview" id="photoPreview">
+                                        <!-- Photo previews will appear here -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="step-content" data-step="5">
+                                <h3>Contact Information</h3>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-label">Your Name</label>
+                                        <input type="text" class="form-control" name="ownerName" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" name="ownerPhone" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" name="ownerEmail">
+                                </div>
+                                <div class="form-group">
+                                    <label class="checkbox">
+                                        <input type="checkbox" name="terms" required>
+                                        I agree to the Terms and Conditions
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="wizard-actions">
+                                <button type="button" class="btn btn--outline" id="prevStep">Previous</button>
+                                <button type="button" class="btn btn--primary" id="nextStep">Next</button>
+                                <button type="submit" class="btn btn--primary hidden" id="submitProperty">Post Property</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Favourites Page -->
-        <section id="favouritesPage" class="page">
+        <!-- Saved Properties Page -->
+        <section id="savedPage" class="page">
             <div class="container">
-                <h2>Your Favourite Properties</h2>
-                <div class="properties-grid" id="favouritesList">
-                    <!-- Favourite properties will be loaded here -->
+                <h2>Saved Properties</h2>
+                <div class="properties__grid" id="savedProperties">
+                    <!-- Saved properties will be loaded here -->
                 </div>
             </div>
         </section>
@@ -421,9 +420,69 @@
         <section id="profilePage" class="page">
             <div class="container">
                 <div class="profile">
-                    <h2>Your Profile</h2>
-                    <div id="profileContent">
-                        <!-- Profile content will be loaded here -->
+                    <h2>My Profile</h2>
+                    <div class="profile-tabs">
+                        <button class="tab-btn active" data-tab="personal">Personal Info</button>
+                        <button class="tab-btn" data-tab="properties">My Properties</button>
+                        <button class="tab-btn" data-tab="settings">Settings</button>
+                    </div>
+                    
+                    <div class="tab-content active" data-tab="personal">
+                        <form class="profile-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" class="form-control" value="John Doe">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" value="john@example.com">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Phone</label>
+                                    <input type="tel" class="form-control" value="+91 98765 43210">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Location</label>
+                                    <input type="text" class="form-control" value="Delhi">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn--primary">Update Profile</button>
+                        </form>
+                    </div>
+                    
+                    <div class="tab-content" data-tab="properties">
+                        <div class="my-properties">
+                            <div class="properties__grid" id="myProperties">
+                                <!-- User's posted properties will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" data-tab="settings">
+                        <div class="settings">
+                            <h3>Notification Settings</h3>
+                            <div class="setting-item">
+                                <label class="checkbox">
+                                    <input type="checkbox" checked>
+                                    Email notifications for new matches
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <label class="checkbox">
+                                    <input type="checkbox" checked>
+                                    SMS alerts for property updates
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <label class="checkbox">
+                                    <input type="checkbox">
+                                    Marketing communications
+                                </label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -434,102 +493,45 @@
     <footer class="footer">
         <div class="container">
             <div class="footer__content">
-                <div class="footer__brand">
-                    <h3>HavenKey</h3>
-                    <p>Your trusted property partner in Delhi NCR</p>
+                <div class="footer__section">
+                    <h4>PropLink Delhi</h4>
+                    <p>Your trusted property partner in Delhi NCR. Find your perfect home without any broker commission.</p>
                 </div>
-                <div class="footer__links">
-                    <a href="#" id="termsFooter">Terms & Conditions</a>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Contact Us</a>
+                <div class="footer__section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#" data-page="buy">Buy Property</a></li>
+                        <li><a href="#" data-page="rent">Rent Property</a></li>
+                        <li><a href="#" data-page="pg">PG/Hostels</a></li>
+                        <li><a href="#" data-page="post">Post Property</a></li>
+                    </ul>
+                </div>
+                <div class="footer__section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer__section">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-envelope"></i> info@proplinkdelhi.com</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
             </div>
             <div class="footer__bottom">
-                <p>&copy; 2025 HavenKey. All rights reserved.</p>
+                <p>&copy; 2025 PropLink Delhi. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Modals -->
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal">
-        <div class="modal__content">
-            <div class="modal__header">
-                <h3>Login to HavenKey</h3>
-                <button class="modal__close">&times;</button>
-            </div>
-            <form id="loginForm">
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" id="loginEmail" required>
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" id="loginPassword" required>
-                </div>
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" id="rememberMe">
-                        Remember me
-                    </label>
-                </div>
-                <button type="submit" class="btn btn--primary btn--full">Login</button>
-            </form>
-            <p>Don't have an account? <a href="#" id="switchToSignup">Sign up</a></p>
-        </div>
-    </div>
-
-    <!-- Signup Modal -->
-    <div id="signupModal" class="modal">
-        <div class="modal__content">
-            <div class="modal__header">
-                <h3>Create Account</h3>
-                <button class="modal__close">&times;</button>
-            </div>
-            <form id="signupForm">
-                <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" id="signupName" required>
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" id="signupEmail" required>
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" id="signupPassword" required minlength="6">
-                </div>
-                <div class="form-group">
-                    <label>Confirm Password</label>
-                    <input type="password" id="signupConfirmPassword" required>
-                </div>
-                <button type="submit" class="btn btn--primary btn--full">Create Account</button>
-            </form>
-            <p>Already have an account? <a href="#" id="switchToLogin">Login</a></p>
-        </div>
-    </div>
-
-    <!-- Terms Modal -->
-    <div id="termsModal" class="modal">
-        <div class="modal__content modal__content--large">
-            <div class="modal__header">
-                <h3>Terms & Conditions</h3>
-                <button class="modal__close">&times;</button>
-            </div>
-            <div class="modal__body">
-                <h4>Terms of Use - HavenKey</h4>
-                <p>By using HavenKey, you agree that all property information is provided by independent owners or agents. HavenKey does not verify legal title or authenticity of listings. Users must exercise due diligence before entering any transaction.</p>
-                <p>Posting fraudulent or misleading listings is strictly prohibited and may lead to permanent account suspension and legal action. All content is for informational purposes only and does not constitute real-estate advice.</p>
-                <p>Users are responsible for verifying property details, legal documentation, and conducting proper due diligence before making any property-related decisions.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Toast Notifications -->
-    <div id="toastContainer" class="toast-container"></div>
-
-    <!-- Scripts -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
